@@ -1,0 +1,309 @@
+*{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+
+.project-title {
+    margin: 10px 0 0 240px;
+}
+
+p {
+    margin: 0
+}
+
+li {
+    list-style-type: none;
+    margin:0;
+}
+
+ul{
+    padding: 0;
+    width: 664px;
+}
+
+hr{
+    border: 1px solid #585858;
+    width: 644px;
+    margin-block-end: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    cursor:pointer;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+
+.display-inline-block{
+    display: inline-block;
+}
+
+.display-none {
+    display: none;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.pl-522 {
+    padding-left: 522px;
+}
+
+.pl-664 {
+    padding-left: 664px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* input start */
+.search-input {
+    height: 46px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.search-input-landing {
+    width: 709px;
+    margin: 44px 16px 0 0;
+    text-align: center;
+}
+
+.search-input-list {
+    width: 509px;
+    margin: 40px 16px 0 0;
+    text-align: center;
+}
+
+.search-input-error {
+    border: 2px solid #FF0000;
+}
+
+/* input end */
+
+/* button start */
+
+.search-button {
+    width: 138px;
+    height: 46px;
+    border-radius: 8px;
+    background: #204080;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background: #4F75C2;
+}
+
+/* button end */
+
+/* list start */
+
+.list-border{
+
+    background: #FFFFFF;
+    border: 1px solid #484848;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.list-landing{
+    width: 709px;
+    margin: 18px 0 0 0;
+    padding-left: 20px;
+}
+
+.list-landing li {
+    padding-top: 15px;
+}
+
+.list-border-none {
+    border: none;
+}
+
+.list-width {
+    width: 720px;
+    min-height: 520px;
+}
+
+/* list end */
+
+/* list item start */
+
+.list-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item-country{
+    margin: 0 0 0 9px;
+    color:#484848;
+    text-align: left;
+}
+
+.list-item-country-list{
+    color:#484848;
+    text-align: left;
+    padding-left: 8px;
+}
+
+.list-item-email{
+    /* margin: 0 45px 0 0; */
+    color:#484848;
+    padding-right: 8px;
+}
+
+.list-item-country-date{
+color: #686868;
+}
+
+.list-item-country-date, .list-item-country-date span{
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.list-width li{
+    cursor: pointer;
+    padding-top: 35px;
+}
+
+.list-width li:hover{
+    background: #C4C4C4;
+    border-radius: 4px;
+}
+
+/* list item end */
+
+/* logo start */
+.logo {
+    margin-top: 150px;
+}
+
+.logo-small {
+    width: 150px;
+    height: 63px;
+}
+
+.logo-small-margin {
+    margin-top: 30px !important;
+    margin-right: 16px;
+}
+/* logo end */
+
+/* order start */
+.order-container {
+    width: 156px;
+    height: 127px;
+    border: 1px solid #484848;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    top: 25px;
+    text-align: left;
+    right: -117px;
+    background-color: white;
+}
+
+.order-container ul {
+    margin-block-start: 0px;
+    width: 100%;
+}
+
+.order-container li {
+    font-size: 14px !important;
+    line-height: 16px !important;
+    padding: 4px 1px 4px 1px;
+}
+
+.order-container li:hover { 
+    background: #C4C4C4;
+    border-radius: 4px;
+    color: white;
+}
+
+.order-logo {
+    display: flex;
+    width: 70%;
+    justify-content: flex-end;
+}
+/* order end */
+
+.infolist {
+    display: flex;
+    justify-content: center;
+}
+
+/* media queries start */
+@media screen and (max-width: 1919px) {
+    .pl-522 {
+        padding-left: 330px;
+    }
+
+    .pl-664 {
+        padding-left: 475px
+    }
+
+    .order-logo{
+        width: 75%;
+    }
+}
+/* media queries end */
+
+
+/* page box start */
+
+.page-box{
+    background: #FFFFFF;
+    border: 1px solid #484848;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: max-content;
+    padding: 2px 8px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.page-box:hover {
+    cursor:pointer;
+}
+
+.page-box-active {
+    background: #204080 !important;
+    color: white;
+}
+
+/* page box end*/
