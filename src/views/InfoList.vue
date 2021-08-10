@@ -12,7 +12,11 @@
       :size="plSize"
       :list-item-style="listItemStyle"
     />
-    <Page :dataLength="dataLength" @pageBoxClicked="pageBoxClicked" />
+    <Page
+      :dataLength="dataLength"
+      @pageBoxClicked="pageBoxClicked"
+      :isNewSearch="isNewSearch"
+    />
   </div>
 </template>
 
@@ -47,6 +51,9 @@ export default {
       dataLength: 0,
       pageStartIndex: 0,
       pageEndIndex: 6,
+      isNewSearch: true,
+      fullData: [],
+      sortOption: "",
     };
   },
   methods: {
@@ -58,8 +65,31 @@ export default {
               return x;
             }
           });
-          this.searchData = data.slice(this.pageStartIndex, this.pageEndIndex);
-          this.dataLength = data.length;
+debugger;
+          this.fullData = data;
+
+          if (this.term != localStorage.getItem("last-query-term")) {
+            localStorage.setItem("last-query-term", this.term);
+            this.pageStartIndex = 0;
+            this.pageEndIndex = 6;
+            this.isNewSearch = true;
+            this.sortOption = "";
+            localStorage.setItem("sort-option","");
+            this.organizeData();
+          }
+          else {
+            this.sortOption = localStorage.getItem("sort-option")
+            if (!this.sortOption) {
+              this.searchData = data;
+              this.organizeData();              
+            }
+            else {
+              this.sortData(this.sortOption);
+            }
+          }
+
+          // this.searchData = data.slice(this.pageStartIndex, this.pageEndIndex);
+          // this.dataLength = data.length;
           this.searchInputClass = "search-input-landing";
         });
       } else {
@@ -76,43 +106,56 @@ export default {
       }
     },
     sortData(sort) {
+      debugger;
       if (sort == "N1") {
-        console.log(
-          this.searchData.sort((a, b) => {
-            return a[0] > b[0] ? 1 : -1;
-          })
-        );
+        this.searchData = this.fullData.sort((a, b) => {
+          return a[0] > b[0] ? 1 : -1;
+        });
+        localStorage.setItem("sort-option", "N1");
       } else if (sort == "N0") {
-        console.log(
-          this.searchData.sort((a, b) => {
-            return a[0] > b[0] ? -1 : 1;
-          })
-        );
+         this.searchData = this.fullData.sort((a, b) => {
+          return a[0] > b[0] ? -1 : 1;
+        });
+        localStorage.setItem("sort-option", "N0");
       } else if (sort == "Y1") {
-        console.log(
-          this.searchData.sort((a, b) => {
-            return a[3].substr(a[3].length - 4, 4) >
-              b[3].substr(b[3].length - 4, 4)
-              ? 1
-              : -1;
-          })
-        );
+         this.searchData = this.fullData.sort((a, b) => {
+          return a[3].substr(a[3].length - 4, 4) >
+            b[3].substr(b[3].length - 4, 4)
+            ? 1
+            : -1;
+        });
+        localStorage.setItem("sort-option", "Y1");
       } else if (sort == "Y0") {
-        console.log(
-          this.searchData.sort((a, b) => {
-            return a[3].substr(a[3].length - 4, 4) >
-              b[3].substr(b[3].length - 4, 4)
-              ? -1
-              : 1;
-          })
-        );
+         this.searchData = this.fullData.sort((a, b) => {
+          return a[3].substr(a[3].length - 4, 4) >
+            b[3].substr(b[3].length - 4, 4)
+            ? -1
+            : 1;
+        });
+        localStorage.setItem("sort-option", "Y0");
       }
+      this.organizeData();
     },
     pageBoxClicked(index) {
       this.pageStartIndex = (index - 1) * 6;
       this.pageEndIndex = index * 6;
+      this.isNewSearch = false;
       this.searchTerm();
     },
+    organizeData() {
+      this.dataLength = this.searchData.length;
+      this.searchData = this.searchData.slice(
+        this.pageStartIndex,
+        this.pageEndIndex
+      );
+    },
+  },
+  created() {
+    if (this.$route.params.term) {
+      this.term = this.$route.params.term;
+      localStorage.setItem("last-query-term", this.term);
+      this.searchTerm();
+    }
   },
 };
 </script>

@@ -21,5 +21,10 @@ export default {
       this.$emit('keyPressed', this.term)
     }
   },
+  created() {
+    if (this.$router.currentRoute.value.fullPath.indexOf("/infolist") > -1 ) {
+      this.term = this.$route.params.term;
+    }
+  }
 };
 </script>

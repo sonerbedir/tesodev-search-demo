@@ -3,7 +3,7 @@
     <Logo :size="logoSize"/>
     <Input v-bind:width="searchInputClass" @keyPressed="getTerm" />
     <Button @buttonClicked="searchTerm" />
-    <List border="list-landing" :searchData="searchData" :size="plSize" :listItemStyle="listItemStyle"/>
+    <List border="list-landing" :searchData="searchData" :size="plSize" :listItemStyle="listItemStyle" :term="term"/>
   </div>
 </template>
 

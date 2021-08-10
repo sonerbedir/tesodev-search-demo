@@ -9,8 +9,8 @@
           :listItemCountry="listItemStyle"
         />
       </ul>
-      <span v-if="isShowMore">
-        <router-link to="/infolist">Show More...</router-link>
+      <span v-if="isShowMore" @click="showMoreClicked">
+        <router-link :to="`/infolist/${term}`" >Show More...</router-link>
       </span>
     </div>
   </div>
@@ -20,19 +20,18 @@
 
 import ListItem from "@/components/listItem.vue";
 export default {
-  props: ["border", "searchData", "size", "listItemStyle"],
+  props: ["border", "searchData", "size", "listItemStyle", "term"],
   components: {
     ListItem,
     
   },
   data() {
     return {
-      // isShowMore: true
     };
   },
   computed: {
     isShowMore() {
-      if (this.$router.currentRoute.value.fullPath == "/infolist") {
+      if (this.$router.currentRoute.value.fullPath.indexOf("/infolist") > -1 ) {
         console.log(this.$router);
         return false;
       }
@@ -40,6 +39,6 @@ export default {
         return true;
       }
     }
-  },
+  }
 };
 </script>
