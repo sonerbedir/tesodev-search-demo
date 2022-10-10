@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: [],
-  searchData: [],
-  paginateData: []
+  searchData: []
 };
 
 const dataSlice = createSlice({
