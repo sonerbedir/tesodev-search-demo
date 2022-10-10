@@ -26,3 +26,7 @@ json-server --watch db.json
 Launches the test runner in the interactive watch mode.\
 
 
+### Incomplete features
+
+-Slider logic,
+-Test
