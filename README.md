@@ -17,6 +17,8 @@ Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
 
 json-server --watch mockData.json
 
+You can open http://localhost:3000/data or http://localhost:3000/cols to view in your browser
+
 
 ## `npm test`
 
