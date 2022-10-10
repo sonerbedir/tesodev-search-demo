@@ -18,25 +18,25 @@ export default function AddNew() {
     Email: "",
   });
 
-  function onValidate(submitedData) {
+  function onValidate(submittedData) {
     const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
-    if (submitedData.Name.length < 4 || submitedData.Name.length > 60) {
+    if (submittedData.Name.length < 4 || submittedData.Name.length > 60) {
       let message = "Name and surname should contain at least 4 words";
       setErrorToState(message);
       
     } else if (
-      submitedData.Country.length < 2 ||
-      submitedData.Country.length > 40
+      submittedData.Country.length < 2 ||
+      submittedData.Country.length > 40
     ) {
       let message = "Country should contain at least 2 words";
       setErrorToState(message);
       
-    } else if (submitedData.City.length < 2 || submitedData.City.length > 40) {
+    } else if (submittedData.City.length < 2 || submittedData.City.length > 40) {
       let message = "City should contain at least 2 words";
       setErrorToState(message);
      
-    } else if (regex.test(submitedData.Email) === false) {
+    } else if (regex.test(submittedData.Email) === false) {
       let message = "Incorrect email";
       setErrorToState(message);
     
