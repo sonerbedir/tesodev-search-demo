@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sortedFilteredData } from "../features/dataSlice";
 
@@ -30,22 +30,22 @@ export default function DropdownCard({ style, handleClick }) {
 
     switch (name) {
       case "Name ascending":
-        let ascendingNameData = sortByNameAscending(isSortedData);
+        let ascendingNameData = sortByName(isSortedData, 1);
 
         return dispatch(sortedFilteredData(ascendingNameData));
 
       case "Name descending":
-        let descandingNameData = sortByNameDescending(isSortedData);
+        let descandingNameData = sortByName(isSortedData, -1);
 
         return dispatch(sortedFilteredData(descandingNameData));
 
       case "Year ascending":
-        let ascendingYearData = sortByYearAscending(isSortedData);
+        let ascendingYearData = sortByYear(isSortedData, 1);
 
         return dispatch(sortedFilteredData(ascendingYearData));
 
       case "Year descending":
-        let descandingYearData = sortByYearDescending(isSortedData);
+        let descandingYearData = sortByYear(isSortedData, -1);
 
         return dispatch(sortedFilteredData(descandingYearData));
 
@@ -54,58 +54,33 @@ export default function DropdownCard({ style, handleClick }) {
     }
   };
 
-  function sortByNameAscending(data) {
-    let ascendingSortData = data.sort((a, b) =>
-      a["Name Surname"] > b["Name Surname"] ? 1 : -1
-    );
+  function sortByName(data, initialValue) {
+    let descendingSortData = data.sort((a, b) => {
+      let sortedData = a["Name Surname"] > b["Name Surname"];
 
-    return ascendingSortData;
-  };
-
-  function sortByNameDescending(data) {
-    let descendingSortData = data.sort((a, b) =>
-      a["Name Surname"] > b["Name Surname"] ? -1 : 1
-    );
+      return initialValue === 1 ? (sortedData ? 1 : -1) : (!sortedData ? 1 : -1);
+    });
 
     return descendingSortData;
   };
 
-  function sortByYearAscending(data) {
+  function sortByYear(data, initialValue) {
     let ascendingSortData = data.sort((a, b) => {
       let calculatedDate = convertDateStringToTime(a, b);
+      let sortedData = calculatedDate.getTimeFirstDate > calculatedDate.getTimesecondDate;
 
-      return calculatedDate.getTimeFirstDate > calculatedDate.getTimesecondDate
-        ? 1
-        : -1;
+      return initialValue === 1 ? (sortedData ? 1 : -1) : (!sortedData ? 1 : -1);
     });
 
     return ascendingSortData;
-  };
-
-  function sortByYearDescending(data) {
-    let descendingSortData = data.sort((a, b) => {
-      let calculatedDate = convertDateStringToTime(a, b);
-
-      return calculatedDate.getTimeFirstDate > calculatedDate.getTimesecondDate
-        ? -1
-        : 1;
-    });
-
-    return descendingSortData;
   };
 
   function convertDateStringToTime(firstDateIndex, lastDateIndex) {
-    let firstDate = firstDateIndex.Date.split("/");
+    let firstDate = firstDateIndex.Date.split("/").reverse().join("/");
+    let getTimeFirstDate = new Date(firstDate).getTime();
 
-    let getTimeFirstDate = new Date(
-      firstDate[1] + " " + firstDate[0] + " " + firstDate[2]
-    ).getTime();
-
-    let secondDate = lastDateIndex.Date.split("/");
-
-    let getTimesecondDate = new Date(
-      secondDate[1] + " " + secondDate[0] + " " + secondDate[2]
-    ).getTime();
+    let secondDate = lastDateIndex.Date.split("/").reverse().join("/");
+    let getTimesecondDate = new Date(secondDate).getTime();
 
     return {
       getTimeFirstDate,

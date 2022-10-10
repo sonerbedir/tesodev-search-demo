@@ -22,28 +22,24 @@ export default function AddNew() {
     const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
     if (submitedData.Name.length < 4 || submitedData.Name.length > 60) {
-      dispatch(
-        setError({
-          message: "Name and surname should contain at least 4 words",
-          visibility: true,
-        })
-      );
-    } else if (submitedData.Country.length < 2 || submitedData.Country.length > 40) {
-      dispatch(
-        setError({
-          message: "Country should contain at least 2 words",
-          visibility: true,
-        })
-      );
+      let message = "Name and surname should contain at least 4 words";
+      setErrorToState(message);
+      
+    } else if (
+      submitedData.Country.length < 2 ||
+      submitedData.Country.length > 40
+    ) {
+      let message = "Country should contain at least 2 words";
+      setErrorToState(message);
+      
     } else if (submitedData.City.length < 2 || submitedData.City.length > 40) {
-      dispatch(
-        setError({
-          message: "City should contain at least 2 words",
-          visibility: true,
-        })
-      );
+      let message = "City should contain at least 2 words";
+      setErrorToState(message);
+     
     } else if (regex.test(submitedData.Email) === false) {
-      dispatch(setError({ message: "Incorrect email", visibility: true }));
+      let message = "Incorrect email";
+      setErrorToState(message);
+    
     } else {
       document
         .querySelectorAll(".text-input")
@@ -53,13 +49,21 @@ export default function AddNew() {
     }
   }
 
+  function setErrorToState(message) {
+    let errorData = {
+      message: message,
+      visibility: true,
+    };
+    dispatch(setError(errorData));
+  }
+
   function setDisableControl() {
     if (!data.Name || !data.Country || !data.City || !data.Email) {
       setDisabled(true);
     } else {
       setDisabled(false);
     }
-  }
+  };
 
   return (
     <div className="add-new-container">
